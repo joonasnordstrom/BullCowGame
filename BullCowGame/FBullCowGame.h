@@ -1,16 +1,20 @@
+/* THe game logic (no ciew code or direct user interaction)
+The game is a simple guess the word game based on Mastermind
+*/
+
 #pragma once
 #include <string>
 
-using FString = std::string;
+using FString = std::string;  //only a naming standard / to make syntax Unreal friendly
 using int32 = int;
 
-struct FBullCowCount {
+struct FBullCowCount {  //structs are like simple classes/objects that can hold in some variables, not sure about functions
 	int32 Bulls = 0;
 	int32 Cows = 0;
-};
+}/*t‰ss‰ voidaan m‰‰ritt‰‰ heti k‰ytett‰v‰t muuttujat tyyliin bullcowgame,BCgame; tai BCGame[4]*/;
 
+//enum ilman classia globaalissa scopessa, esim enum EGuessStatus {}
 enum class EGuessStatus {
-	//enum ilman classia globaalissa scopessa, esim enum EGuessStatus {}
 	InvalidStatus,
 	Ok,
 	Not_Isogram,
@@ -35,8 +39,10 @@ public:
 	FBullCowCount SubmitValidGuess(FString);
 
 private:
-	int32 MyMaxTries;
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
 	bool bGameIsWon;
+
+	bool IsIsogram(FString) const; 
+	bool IsLowercase(FString) const;
 };
